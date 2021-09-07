@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    #restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./datadir:/data/db
+
+  swagger-sample:
+    container_name: swagger-sample
+    build:
+      context: .
+      dockerfile: Dockerfile-common
+      args:
+        JAR_FILE: configuration/target/swaggerSample.jar
+    ports:
+      - "8191:8191"
+    environment:
+      - "SPRING_PROFILE_ACTIVE=local"
+      - "SPRING_CONFIG_LOCATION=/swaggerSample-local.properties"
+    volumes:
+      - ./configuration/src/main/resources/swaggerSample-local.properties:/swaggerSample-local.properties
+    links:
+      - mongo
+
