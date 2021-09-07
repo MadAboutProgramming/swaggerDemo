@@ -17,7 +17,9 @@ Open the link below in the browser:
 http://localhost:8191/swaggerSampleService/swagger-ui.html
 
 ## steps start using docker:
+```
 sudo docker-compose build swagger-sample
 sudo docker-compose up -d
+```
 
 ## NOTE: make sure mongoDb should run. 
