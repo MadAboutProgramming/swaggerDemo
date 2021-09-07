@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: swaggerSample
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: com.demo.generic.configuration.PostgresDialect
+
+---
+
+spring:
+  profiles: local
+  cloud:
+    config:
+      name: swaggerSample
+      uri: http://localhost:9999/configurations
+      fail-fast: true
+      username: user
+      password: demo
+
+---
+
+spring:
+  profiles: staging
+  cloud:
+    config:
+      name: swaggerSample
+      uri: http://config-server:9999/configurations
+      fail-fast: true
+      username: user
+      password: demo
+
+---
+
+spring:
+  profiles: prod
+  cloud:
+    config:
+      name: swaggerSample
+      uri: http://localhost:9999/configurations
+      fail-fast: true
+      username: user
+      password: demo
